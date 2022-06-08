@@ -1,0 +1,754 @@
+#fiascovaifalir
+
+conectar ao ssh >> 
+
+ssh -p 2220 bandit0@bandit.labs.overthewire.org 
+password - bandit0
+
+pass bandit1 - boJ9jbbUNNfktd78OOpsqOltutMc3MY1
+
+1 - 2 
+
+bandit1@bandit:~$ find / -name - 2>/dev/null -exec cat {} \;
+CV1DtqXWVFXTvM2F0k09SHz0YwRINYA9
+bandit1@bandit:~$ cat $(find / -name - 2>/dev/null)
+CV1DtqXWVFXTvM2F0k09SHz0YwRINYA9
+
+2 - 3
+
+bandit2@bandit:~$ find / -name "\spaces \in \this \filename" 2>/dev/null -exec cat {} \;
+UmHadQclWmgdLOKQ3YNgjWxGoRMb5luK
+bandit2@bandit:~$ 
+
+3 - 4
+
+bandit3@bandit:~$ ^C
+bandit3@bandit:~$ find / -name ".*" 2>/dev/null | grep inhere 
+/home/bandit3/inhere/.hidden
+bandit3@bandit:~$ cat /home/bandit3/inhere/.hidden
+pIwrPrtPN36QITSp3EQaw936yaFoFgAB
+bandit3@bandit:~$ 
+
+4 - 5 
+
+bandit4@bandit:~/inhere$ find $PWD -type f -exec file {} +; grep ASCII | cat /home/bandit4/inhere/-file07
+/home/bandit4/inhere/-file01: data
+/home/bandit4/inhere/-file00: data
+/home/bandit4/inhere/-file06: data
+/home/bandit4/inhere/-file03: data
+/home/bandit4/inhere/-file05: data
+/home/bandit4/inhere/-file08: data
+/home/bandit4/inhere/-file04: data
+/home/bandit4/inhere/-file07: ASCII text
+/home/bandit4/inhere/-file02: data
+/home/bandit4/inhere/-file09: data
+koReBOKuIDDepwhWk7jZC0RTdopnAYKh
+
+5 - 6 
+
+bandit5@bandit:~$ find $PWD -size 1033c -type f ! -executable -exec file {} +;
+/home/bandit5/inhere/maybehere07/.file2: ASCII text, with very long lines
+
+6 - 7 
+
+bandit6@bandit:/$ find / -group bandit6 -user bandit7 -size 33c 2>/dev/null -exec cat {} \;
+HKBPTKQnIay4Fw76bEy8PVxKEDQRKTzs
+bandit6@bandit:/$ 
+
+7 - 8
+
+bandit7@bandit:~$ tac data.txt | grep "millionth"
+millionth       cvX2JJa4CFALtqS87jk27qwqGhBM9plV
+bandit7@bandit:~$ 
+
+8 - 9 
+
+bandit8@bandit:~$ cat data.txt | sort | uniq -c | grep -w 1 
+      1 UsvVyFSfZZWbi6wgC7dAFyFuR6jQQUhR
+
+9 - 10
+
+bandit9@bandit:~$ strings data.txt | grep "====\+" | grep tru | cut -d " " -f 2
+truKLdjsbJ5g7yyJ2X2R0o3a5HQJFuLk
+
+10 - 11
+
+bandit10@bandit:~$ grep -E '^[A-Za-z0-9+/]{4}*([A-Za-z0-9+/]{4}|[A-Za-z0-9+/]{3}=|[A-Za-z0-9+/]{2}==)' data.txt | base64 -d
+The password is IFukwKGsFW8MOq3IRFqrxE1hxTNEbUPR
+bandit10@bandit:~$ 
+
+11 - 12
+
+bandit11@bandit:~$ echo "GUR CNFFJBEQ VF 5GR8L4QETPESPK8HTQJHRK8XSP6X2RHH" | python -c 'import sys; print sys.stdin.read().decode("rot13")'
+THE PASSWORD IS 5TE8Y4DRGCRFCX8UGDWUEX8KFC6K2EUU
+
+bandit11@bandit:~$ tr "a-zA-Z" "N-ZA-Mn-za-m" < data.txt
+tHE PASSWORD IS 5tE8y4DRGcrFcX8UGDWUex8kfc6K2euU
+bandit11@bandit:~$ 
+
+bandit11@bandit:~$ tr "A-Za-z" "N-ZA-Mn-za-m" < data.txt
+The password is 5Te8Y4drgCRfCx8ugdwuEX8KFC6k2EUu
+
+12 - 13
+
+
+bandit12@bandit:/tmp/fiasco$ ls
+data4.bin  data.txt
+bandit12@bandit:/tmp/fiasco$ file data4.bin
+data4.bin: gzip compressed data, was "data4.bin", last modified: Thu May  7 18:14:30 2020, max compression, from Unix
+bandit12@bandit:/tmp/fiasco$ mv data4.bin data4.gz 
+bandit12@bandit:/tmp/fiasco$ gzip -d data4.gz 
+bandit12@bandit:/tmp/fiasco$ file data4 
+data4: POSIX tar archive (GNU)
+bandit12@bandit:/tmp/fiasco$ tar -xvf data4 
+data5.bin
+bandit12@bandit:/tmp/fiasco$ file data5.bin 
+data5.bin: POSIX tar archive (GNU)
+bandit12@bandit:/tmp/fiasco$ tar -xvf data5.biin
+tar: data5.biin: Cannot open: No such file or directory
+tar: Error is not recoverable: exiting now
+bandit12@bandit:/tmp/fiasco$ tar -xvf data5.bin
+data6.bin
+bandit12@bandit:/tmp/fiasco$ file data6.bin
+data6.bin: bzip2 compressed data, block size = 900k
+bandit12@bandit:/tmp/fiasco$ bzip2 -d data6.bin 
+bzip2: Can't guess original name for data6.bin -- using data6.bin.out
+bandit12@bandit:/tmp/fiasco$ file data6.bin.out
+data6.bin.out: POSIX tar archive (GNU)
+bandit12@bandit:/tmp/fiasco$ tar -xvf data6.bin.out
+data8.bin
+bandit12@bandit:/tmp/fiasco$ file data8.bin
+data8.bin: gzip compressed data, was "data9.bin", last modified: Thu May  7 18:14:30 2020, max compression, from Unix
+bandit12@bandit:/tmp/fiasco$ gzip -d data8.gz 
+gzip: data8.gz: No such file or directory
+bandit12@bandit:/tmp/fiasco$ mv data8.bin data8.gz && gzip -d data8.gz && file data8
+data8: ASCII text
+bandit12@bandit:/tmp/fiasco$ cat data8
+The password is 8ZjyCRiBWFYkneahHwxCv3wb2a1ORpYL
+
+13 - 14 
+
+
+> whoami
+capeta
+> echo -n "-----BEGIN RSA PRIVATE KEY-----  
+MIIEpAIBAAKCAQEAxkkOE83W2cOT7IWhFc9aPaaQmQDdgzuXCv+ppZHa++buSkN+
+gg0tcr7Fw8NLGa5+Uzec2rEg0WmeevB13AIoYp0MZyETq46t+jk9puNwZwIt9XgB
+ZufGtZEwWbFWw/vVLNwOXBe4UWStGRWzgPpEeSv5Tb1VjLZIBdGphTIK22Amz6Zb
+ThMsiMnyJafEwJ/T8PQO3myS91vUHEuoOMAzoUID4kN0MEZ3+XahyK0HJVq68KsV
+ObefXG1vvA3GAJ29kxJaqvRfgYnqZryWN7w3CHjNU4c/2Jkp+n8L0SnxaNA+WYA7
+jiPyTF0is8uzMlYQ4l1Lzh/8/MpvhCQF8r22dwIDAQABAoIBAQC6dWBjhyEOzjeA
+J3j/RWmap9M5zfJ/wb2bfidNpwbB8rsJ4sZIDZQ7XuIh4LfygoAQSS+bBw3RXvzE
+pvJt3SmU8hIDuLsCjL1VnBY5pY7Bju8g8aR/3FyjyNAqx/TLfzlLYfOu7i9Jet67
+xAh0tONG/u8FB5I3LAI2Vp6OviwvdWeC4nOxCthldpuPKNLA8rmMMVRTKQ+7T2VS
+nXmwYckKUcUgzoVSpiNZaS0zUDypdpy2+tRH3MQa5kqN1YKjvF8RC47woOYCktsD
+o3FFpGNFec9Taa3Msy+DfQQhHKZFKIL3bJDONtmrVvtYK40/yeU4aZ/HA2DQzwhe
+ol1AfiEhAoGBAOnVjosBkm7sblK+n4IEwPxs8sOmhPnTDUy5WGrpSCrXOmsVIBUf
+laL3ZGLx3xCIwtCnEucB9DvN2HZkupc/h6hTKUYLqXuyLD8njTrbRhLgbC9QrKrS
+M1F2fSTxVqPtZDlDMwjNR04xHA/fKh8bXXyTMqOHNJTHHNhbh3McdURjAoGBANkU
+1hqfnw7+aXncJ9bjysr1ZWbqOE5Nd8AFgfwaKuGTTVX2NsUQnCMWdOp+wFak40JH
+PKWkJNdBG+ex0H9JNQsTK3X5PBMAS8AfX0GrKeuwKWA6erytVTqjOfLYcdp5+z9s
+8DtVCxDuVsM+i4X8UqIGOlvGbtKEVokHPFXP1q/dAoGAcHg5YX7WEehCgCYTzpO+
+xysX8ScM2qS6xuZ3MqUWAxUWkh7NGZvhe0sGy9iOdANzwKw7mUUFViaCMR/t54W1
+GC83sOs3D7n5Mj8x3NdO8xFit7dT9a245TvaoYQ7KgmqpSg/ScKCw4c3eiLava+J
+3btnJeSIU+8ZXq9XjPRpKwUCgYA7z6LiOQKxNeXH3qHXcnHok855maUj5fJNpPbY
+iDkyZ8ySF8GlcFsky8Yw6fWCqfG3zDrohJ5l9JmEsBh7SadkwsZhvecQcS9t4vby
+9/8X4jS0P8ibfcKS4nBP+dT81kkkg5Z5MohXBORA7VWx+ACohcDEkprsQ+w32xeD
+qT1EvQKBgQDKm8ws2ByvSUVs9GjTilCajFqLJ0eVYzRPaY6f++Gv/UVfAPV4c+S0
+kAWpXbv5tbkkzbS0eaLPTKgLzavXtQoTtKwrjpolHKIHUz6Wu+n4abfAIRFubOdN
+/+aLoRQ0yBDRbdXMsZN/jvY44eM+xRLdRVyMmdPtP8belRi2E2aEzA==
+-----END RSA PRIVATE KEY-----" > tomalegalkk
+> sudo chmod 600 tomalegalkk
+> sudo ssh -i tomalegalkk bandit14@bandit.labs.overthewire.org -p 2220
+bandit14@bandit:~$ cat /etc/bandit_pass/bandit14
+4wcYUJFw0k0XLShlDzztnTBHiqxU3b3e
+
+
+14 - 15 
+
+bandit14@bandit:~$ nc localhost 30000
+4wcYUJFw0k0XLShlDzztnTBHiqxU3b3e
+Correct!
+BfMYroe26WYalil77FoDi9qh59eK5xNr
+
+15 - 16
+
+BfMYroe26WYalil77FoDi9qh59eK5xNr
+Correct!
+cluFn7wTiGryunymYOu4RcffSxQluehd
+
+closed
+bandit15@bandit:~$ openssl s_client -connect localhost:30001
+
+16 - 17 
+
+nmap - get the port with ssl 
+openssl s_client -connect localhost:31790 
+sent the last password as below
+got rsa priv key
+31790
+cluFn7wTiGryunymYOu4RcffSxQluehd
+
+
+-----BEGIN RSA PRIVATE KEY-----
+MIIEogIBAAKCAQEAvmOkuifmMg6HL2YPIOjon6iWfbp7c3jx34YkYWqUH57SUdyJ
+imZzeyGC0gtZPGujUSxiJSWI/oTqexh+cAMTSMlOJf7+BrJObArnxd9Y7YT2bRPQ
+Ja6Lzb558YW3FZl87ORiO+rW4LCDCNd2lUvLE/GL2GWyuKN0K5iCd5TbtJzEkQTu
+DSt2mcNn4rhAL+JFr56o4T6z8WWAW18BR6yGrMq7Q/kALHYW3OekePQAzL0VUYbW
+JGTi65CxbCnzc/w4+mqQyvmzpWtMAzJTzAzQxNbkR2MBGySxDLrjg0LWN6sK7wNX
+x0YVztz/zbIkPjfkU1jHS+9EbVNj+D1XFOJuaQIDAQABAoIBABagpxpM1aoLWfvD
+KHcj10nqcoBc4oE11aFYQwik7xfW+24pRNuDE6SFthOar69jp5RlLwD1NhPx3iBl
+J9nOM8OJ0VToum43UOS8YxF8WwhXriYGnc1sskbwpXOUDc9uX4+UESzH22P29ovd
+d8WErY0gPxun8pbJLmxkAtWNhpMvfe0050vk9TL5wqbu9AlbssgTcCXkMQnPw9nC
+YNN6DDP2lbcBrvgT9YCNL6C+ZKufD52yOQ9qOkwFTEQpjtF4uNtJom+asvlpmS8A
+vLY9r60wYSvmZhNqBUrj7lyCtXMIu1kkd4w7F77k+DjHoAXyxcUp1DGL51sOmama
++TOWWgECgYEA8JtPxP0GRJ+IQkX262jM3dEIkza8ky5moIwUqYdsx0NxHgRRhORT
+8c8hAuRBb2G82so8vUHk/fur85OEfc9TncnCY2crpoqsghifKLxrLgtT+qDpfZnx
+SatLdt8GfQ85yA7hnWWJ2MxF3NaeSDm75Lsm+tBbAiyc9P2jGRNtMSkCgYEAypHd
+HCctNi/FwjulhttFx/rHYKhLidZDFYeiE/v45bN4yFm8x7R/b0iE7KaszX+Exdvt
+SghaTdcG0Knyw1bpJVyusavPzpaJMjdJ6tcFhVAbAjm7enCIvGCSx+X3l5SiWg0A
+R57hJglezIiVjv3aGwHwvlZvtszK6zV6oXFAu0ECgYAbjo46T4hyP5tJi93V5HDi
+Ttiek7xRVxUl+iU7rWkGAXFpMLFteQEsRr7PJ/lemmEY5eTDAFMLy9FL2m9oQWCg
+R8VdwSk8r9FGLS+9aKcV5PI/WEKlwgXinB3OhYimtiG2Cg5JCqIZFHxD6MjEGOiu
+L8ktHMPvodBwNsSBULpG0QKBgBAplTfC1HOnWiMGOU3KPwYWt0O6CdTkmJOmL8Ni
+blh9elyZ9FsGxsgtRBXRsqXuz7wtsQAgLHxbdLq/ZJQ7YfzOKU4ZxEnabvXnvWkU
+YOdjHdSOoKvDQNWu6ucyLRAWFuISeXw9a/9p7ftpxm0TSgyvmfLF2MIAEwyzRqaM
+77pBAoGAMmjmIJdjp+Ez8duyn3ieo36yrttF5NSsJLAbxFpdlc1gvtGCWW+9Cq0b
+dxviW8+TFVEBl1O4f7HVm6EpTscdDxU+bCXWkfjuRb7Dy9GOtt9JPsX8MBTakzh3
+vBgsyi/sN3RqRBcGU40fOoZyfAMT8s1m/uYv52O6IgeuZ/ujbjY=
+-----END RSA PRIVATE KEY-----
+
+
+17 - 18 
+diff -y -d 
+bandit17@bandit:~$ diff -dy passwords.new passwords.old | grep "|"
+kfBf3eYk5BPBRzwjqutbbfE887SVc5Yd                              | w0Yfolrc5bwjS4qw5mq1nnQi6mF03bii
+kfBf3eYk5BPBRzwjqutbbfE887SVc5Yd
+
+18 - 19 
+
+> ssh bandit18@bandit.labs.overthewire.org -p 2220 'ls -lath && cat *'
+This is a OverTheWire game server. More information on http://www.overthewire.org/wargames
+
+bandit18@bandit.labs.overthewire.org's password: 
+total 24K
+drwxr-xr-x 41 root     root     4.0K May  7  2020 ..
+drwxr-xr-x  2 root     root     4.0K May  7  2020 .
+-rw-r-----  1 bandit19 bandit18 3.5K May  7  2020 .bashrc
+-rw-r-----  1 bandit19 bandit18   33 May  7  2020 readme
+-rw-r--r--  1 root     root      220 May 15  2017 .bash_logout
+-rw-r--r--  1 root     root      675 May 15  2017 .profile
+IueksS7Ubh8G3DCwVzrTd8rAVOwq3M5x
+
+19 - 20
+use lrt to list owners and groups of something
+
+id <- 
+run command as other user <- other id 
+bandit19@bandit:~$ getfacl /etc/bandit_pass/* | grep bandit20 && ls -ltr ; ./bandit20-do cat /etc/bandit_pass/bandit20
+getfacl: Removing leading '/' from absolute path names
+# file: etc/bandit_pass/bandit20
+# owner: bandit20
+# group: bandit20
+total 8
+-rwsr-x--- 1 bandit20 bandit19 7296 May  7  2020 bandit20-do
+GbKksEFF4yrVs6il55v6gwY5aVje5f0j
+
+
+20 - 21 
+
+bandit20@bandit:~$ ./suconnect 7359
+Read: GbKksEFF4yrVs6il55v6gwY5aVje5f0j
+Password matches, sending next password
+
+
+
+bandit20@bandit:~$ nc -nvlp 7359
+listening on [any] 7359 ...
+connect to [127.0.0.1] from (UNKNOWN) [127.0.0.1] 59066
+GbKksEFF4yrVs6il55v6gwY5aVje5f0j
+gE269g2h3mw3pwgrj0Ha9Uoqen1c9DGr
+
+
+documentar todo passo a passo e explicacao do pq 
+
+conectar ao ssh >> 
+
+ssh -p 2220 bandit0@bandit.labs.overthewire.org 
+password - bandit0
+
+pass bandit1 - boJ9jbbUNNfktd78OOpsqOltutMc3MY1
+
+1 - 2 
+
+bandit1@bandit:~$ find / -name - 2>/dev/null -exec cat {} \;
+CV1DtqXWVFXTvM2F0k09SHz0YwRINYA9
+bandit1@bandit:~$ cat $(find / -name - 2>/dev/null)
+CV1DtqXWVFXTvM2F0k09SHz0YwRINYA9
+
+2 - 3
+
+bandit2@bandit:~$ find / -name "\spaces \in \this \filename" 2>/dev/null -exec cat {} \;
+UmHadQclWmgdLOKQ3YNgjWxGoRMb5luK
+bandit2@bandit:~$ 
+
+3 - 4
+
+bandit3@bandit:~$ ^C
+bandit3@bandit:~$ find / -name ".*" 2>/dev/null | grep inhere 
+/home/bandit3/inhere/.hidden
+bandit3@bandit:~$ cat /home/bandit3/inhere/.hidden
+bandit22@bandit:~$ ls -lathr /tmp/8ca319486bfbbc3663ea0fbe81326349
+-rw-r--r-- 1 bandit23 root 33 May 30 04:45 /tmp/8ca319486bfbbc3663ea0fbe81326349
+bandit22@bandit:~$ cat $_
+jc1udXuA1tiHqjIsL8yaapX5XIAI6i0n
+bandit22@bandit:~$ 
+
+23 - 24 
+
+bandit23@bandit:~$ cat /usr/bin/cronjob_bandit24.sh
+#!/bin/bash
+
+myname=$(whoami)
+
+cd /var/spool/$myname
+echo "Executing and deleting all scripts in /var/spool/$myname:"
+for i in * .*;
+do
+    if [ "$i" != "." -a "$i" != ".." ];
+    then
+        echo "Handling $i"
+        owner="$(stat --format "%U" ./$i)"
+        if [ "${owner}" = "bandit23" ]; then
+            timeout -s 9 60 ./$i
+        fi
+        rm -f ./$i
+    fi
+done
+
+bandit23@bandit:~$ mkdir /tmp/94733 && cd /tmp/94733
+bandit23@bandit:/tmp/94733$ vi 94733.sh
+bandit23@bandit:/tmp/94733$ touch fiasco
+bandit23@bandit:/tmp/94733$ chmod 777 -R /tmp/94733
+bandit23@bandit:/tmp/94733$ cp 94733.sh /var/spool/bandit24 
+bandit23@bandit:/tmp/94733$ cat fiasco
+bandit23@bandit:/tmp/94733$ ls -lath
+total 2.0M
+
+bandit23@bandit:/tmp/94733$ ls -lath
+total 2.0M
+-rwxrwxrwx 1 bandit23 root   33 May 31 23:39 fiasco
+drwxrws-wt 1 root     root 2.0M May 31 23:39 ..
+drwxrwxrwx 2 bandit23 root 4.0K May 31 23:38 .
+-rwxrwxrwx 1 bandit23 root   63 May 31 23:37 94733.sh
+bandit23@bandit:/tmp/94733$ cat fiasco
+UoMYTrfrBFHyQXmg6gzctqAwOmw1IohZ
+bandit23@bandit:/tmp/94733$ cat 94733.sh 
+#!/bin/bash
+cat /etc/bandit_pass/bandit24 > /tmp/94733/fiasco
+
+24 - 25 
+
+uNG9O58gUE7snukf3bvZ0rxhtnjzSGzG
+
+25 - 26 
+
+bandit25@bandit:~$ ls
+bandit26.sshkey
+bandit25@bandit:~$ cat bandit26.sshkey
+-----BEGIN RSA PRIVATE KEY-----
+MIIEpQIBAAKCAQEApis2AuoooEqeYWamtwX2k5z9uU1Afl2F8VyXQqbv/LTrIwdW
+pTfaeRHXzr0Y0a5Oe3GB/+W2+PReif+bPZlzTY1XFwpk+DiHk1kmL0moEW8HJuT9
+/5XbnpjSzn0eEAfFax2OcopjrzVqdBJQerkj0puv3UXY07AskgkyD5XepwGAlJOG
+xZsMq1oZqQ0W29aBtfykuGie2bxroRjuAPrYM4o3MMmtlNE5fC4G9Ihq0eq73MDi
+1ze6d2jIGce873qxn308BA2qhRPJNEbnPev5gI+5tU+UxebW8KLbk0EhoXB953Ix
+3lgOIrT9Y6skRjsMSFmC6WN/O7ovu8QzGqxdywIDAQABAoIBAAaXoETtVT9GtpHW
+qLaKHgYtLEO1tOFOhInWyolyZgL4inuRRva3CIvVEWK6TcnDyIlNL4MfcerehwGi
+il4fQFvLR7E6UFcopvhJiSJHIcvPQ9FfNFR3dYcNOQ/IFvE73bEqMwSISPwiel6w
+e1DjF3C7jHaS1s9PJfWFN982aublL/yLbJP+ou3ifdljS7QzjWZA8NRiMwmBGPIh
+Yq8weR3jIVQl3ndEYxO7Cr/wXXebZwlP6CPZb67rBy0jg+366mxQbDZIwZYEaUME
+zY5izFclr/kKj4s7NTRkC76Yx+rTNP5+BX+JT+rgz5aoQq8ghMw43NYwxjXym/MX
+c8X8g0ECgYEA1crBUAR1gSkM+5mGjjoFLJKrFP+IhUHFh25qGI4Dcxxh1f3M53le
+wF1rkp5SJnHRFm9IW3gM1JoF0PQxI5aXHRGHphwPeKnsQ/xQBRWCeYpqTme9amJV
+tD3aDHkpIhYxkNxqol5gDCAt6tdFSxqPaNfdfsfaAOXiKGrQESUjIBcCgYEAxvmI
+2ROJsBXaiM4Iyg9hUpjZIn8TW2UlH76pojFG6/KBd1NcnW3fu0ZUU790wAu7QbbU
+i7pieeqCqSYcZsmkhnOvbdx54A6NNCR2btc+si6pDOe1jdsGdXISDRHFb9QxjZCj
+6xzWMNvb5n1yUb9w9nfN1PZzATfUsOV+Fy8CbG0CgYEAifkTLwfhqZyLk2huTSWm
+pzB0ltWfDpj22MNqVzR3h3d+sHLeJVjPzIe9396rF8KGdNsWsGlWpnJMZKDjgZsz
+JQBmMc6UMYRARVP1dIKANN4eY0FSHfEebHcqXLho0mXOUTXe37DWfZza5V9Oify3
+JquBd8uUptW1Ue41H4t/ErsCgYEArc5FYtF1QXIlfcDz3oUGz16itUZpgzlb71nd
+1cbTm8EupCwWR5I1j+IEQU+JTUQyI1nwWcnKwZI+5kBbKNJUu/mLsRyY/UXYxEZh
+ibrNklm94373kV1US/0DlZUDcQba7jz9Yp/C3dT/RlwoIw5mP3UxQCizFspNKOSe
+euPeaxUCgYEAntklXwBbokgdDup/u/3ms5Lb/bm22zDOCg2HrlWQCqKEkWkAO6R5
+/Wwyqhp/wTl8VXjxWo+W+DmewGdPHGQQ5fFdqgpuQpGUq24YZS8m66v5ANBwd76t
+IZdtF5HXs2S5CADTwniUS5mX1HO9l5gUkk+h0cH5JnPtsMCnAUM+BRY=
+-----END RSA PRIVATE KEY-----
+
+bandit25@bandit:~$ cat /etc/passwd | grep bandit26 
+bandit26:x:11026:11026:bandit level 26:/home/bandit26:/usr/bin/showtext
+bandit25@bandit:~$ file /usr/bin/showtext
+/usr/bin/showtext: POSIX shell script, ASCII text executable
+bandit25@bandit:~$ cat /usr/bin/showtext
+#!/bin/sh
+
+export TERM=linux
+
+more ~/text.txt
+exit 0
+
+bandit25@bandit:~$ man more
+bandit25@bandit:~$ man more
+bandit25@bandit:~$ ssh -i bandit26.sshkey bandit26@localhost 
+
+
+:shell
+  1   _                     _ _ _   ___   __     
+  2  | |                   | (_) | |__ \ / /
+<RO] [dec= 95] [hex=5F] [pos=0001:0003][16% of 6]
+ | |                   | (_) | |__ \ / /  
+ | |__   __ _ _ __   __| |_| |_   ) / /_  
+ | '_ \ / _` | '_ \ / _` | | __| / / '_ \ 
+ | |_) | (_| | | | | (_| | | |_ / /| (_) |
+bandit26@bandit:~$ cat /etc/bandit_pass/bandit26 
+5czgV9L3Xx8JPOyRbXh6lQbmIOWvPT6Z
+bandit26@bandit:~$ cd .ssh
+bandit26@bandit:~/.ssh$ cat authorized_keys 
+ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCmKzYC6iigSp5hZqa3BfaTnP25TUB+XYXxXJdCpu/8tOsjB1alN9p5EdfOvRjRrk57cYH/5bb49F6J/5s9mXNNjVcXCmT4OIeTWSYvSagRbwcm5P3/lduemNLOfR4QB8VrHY5yimOvNWp0ElB6uSPSm6/dRdjTsCySCTIPld6nAYCUk4bFmwyrWhmpDRbb1oG1/KS4aJ7ZvGuhGO4A+tgzijcwya2U0Tl8Lgb0iGrR6rvcwOLXN7p3aMgZx7zverGffTwEDaqFE8k0Ruc96/mAj7m1T5TF5tbwotuTQSGhcH3ncjHeWA4itP1jqyRGOwxIWYLpY387ui+7xDMarF3L bandit26@bandit
+bandit26@bandit:~/.ssh$ cd ..
+bandit26@bandit:~$ ls
+bandit27-do  text.txt
+
+
+
+26 - 27
+
+bandit26@bandit:~$ ./bandit27-do cat /etc/bandit_pass/bandit27
+3ba3118a22e93127a4ed485be72ef5ea
+
+27 - 28
+
+bandit27@bandit:/tmp/superfiascorm94733$ git clone ssh://bandit27-git@localhost/home/bandit27-git/repo
+Cloning into 'repo'...
+Could not create directory '/home/bandit27/.ssh'.
+The authenticity of host 'localhost (127.0.0.1)' can't be established.
+ECDSA key fingerprint is SHA256:98UL0ZWr85496EtCRkKlo20X3OPnyPSB5tB5RPbhczc.
+Are you sure you want to continue connecting (yes/no)? yes
+Failed to add the host to the list of known hosts (/home/bandit27/.ssh/known_hosts).
+This is a OverTheWire game server. More information on http://www.overthewire.org/wargames
+
+bandit27-git@localhost's password: 
+remote: Counting objects: 3, done.
+remote: Compressing objects: 100% (2/2), done.
+remote: Total 3 (delta 0), reused 0 (delta 0)
+Receiving objects: 100% (3/3), done.
+bandit27@bandit:/tmp/superfiascorm94733$ ls -lathr *
+total 16K
+drwxr-sr-x 3 bandit27 root 4.0K Jun  1 01:57 ..
+-rw-r--r-- 1 bandit27 root   68 Jun  1 01:57 README
+drwxr-sr-x 8 bandit27 root 4.0K Jun  1 01:57 .git
+drwxr-sr-x 3 bandit27 root 4.0K Jun  1 01:57 .
+bandit27@bandit:/tmp/superfiascorm94733$ cls
+-bash: cls: command not found
+bandit27@bandit:/tmp/superfiascorm94733$ ls
+repo
+bandit27@bandit:/tmp/superfiascorm94733$ cd repo
+bandit27@bandit:/tmp/superfiascorm94733/repo$ ls
+README
+bandit27@bandit:/tmp/superfiascorm94733/repo$ cat readme
+cat: readme: No such file or directory
+bandit27@bandit:/tmp/superfiascorm94733/repo$ cat README 
+The password to the next level is: 0ef186ac70e04ea33b4c1853d2526fa2
+bandit27@bandit:/tmp/superfiascorm94733/repo$ 
+
+28 - 29 
+
+bandit28@bandit:/tmp/fiasquinhorm94733/repo$ cat README.md
+# Bandit Notes
+Some notes for level29 of bandit.
+
+## credentials
+
+- username: bandit29
+- password: xxxxxxxxxx
+
+bandit28@bandit:/tmp/fiasquinhorm94733/repo$ ls
+README.md
+bandit28@bandit:/tmp/fiasquinhorm94733/repo$ ls -lath 
+total 16K
+drwxr-sr-x 3 bandit28 root 4.0K Jun  1 02:00 .
+drwxr-sr-x 8 bandit28 root 4.0K Jun  1 02:00 .git
+-rw-r--r-- 1 bandit28 root  111 Jun  1 02:00 README.md
+drwxr-sr-x 3 bandit28 root 4.0K Jun  1 02:00 ..
+bandit28@bandit:/tmp/fiasquinhorm94733/repo$ git log
+commit edd935d60906b33f0619605abd1689808ccdd5ee
+Author: Morla Porla <morla@overthewire.org>
+Date:   Thu May 7 20:14:49 2020 +0200
+
+    fix info leak
+
+commit c086d11a00c0648d095d04c089786efef5e01264
+Author: Morla Porla <morla@overthewire.org>
+Date:   Thu May 7 20:14:49 2020 +0200
+
+    add missing data
+
+commit de2ebe2d5fd1598cd547f4d56247e053be3fdc38
+Author: Ben Dover <noone@overthewire.org>
+Date:   Thu May 7 20:14:49 2020 +0200
+
+    initial commit of README.md
+bandit28@bandit:/tmp/fiasquinhorm94733/repo$ git show edd935d60906b33f0619605abd1689808ccdd5ee
+commit edd935d60906b33f0619605abd1689808ccdd5ee
+Author: Morla Porla <morla@overthewire.org>
+Date:   Thu May 7 20:14:49 2020 +0200
+
+    fix info leak
+
+diff --git a/README.md b/README.md
+index 3f7cee8..5c6457b 100644
+--- a/README.md
++++ b/README.md
+@@ -4,5 +4,5 @@ Some notes for level29 of bandit.
+ ## credentials
+ 
+ - username: bandit29
+-- password: bbc96594b4e001778eee9975372716b2
++- password: xxxxxxxxxx
+
+
+29 - 30 
+
+bbc96594b4e001778eee9975372716b2
+ssh://bandit29-git@localhost/home/bandit29-git/repo
+
+bandit29@bandit:/tmp/superfiascaorm94733/repo$ git branch
+* master
+bandit29@bandit:/tmp/superfiascaorm94733/repo$ ls -lath 
+total 16K
+drwxr-sr-x 3 bandit29 root 4.0K Jun  1 02:05 .
+drwxr-sr-x 8 bandit29 root 4.0K Jun  1 02:05 .git
+-rw-r--r-- 1 bandit29 root  131 Jun  1 02:05 README.md
+drwxr-sr-x 3 bandit29 root 4.0K Jun  1 02:05 ..
+bandit29@bandit:/tmp/superfiascaorm94733/repo$ cd .git
+bandit29@bandit:/tmp/superfiascaorm94733/repo/.git$ ls -lath 
+total 52K
+drwxr-sr-x 8 bandit29 root 4.0K Jun  1 02:05 .
+drwxr-sr-x 3 bandit29 root 4.0K Jun  1 02:05 ..
+-rw-r--r-- 1 bandit29 root  276 Jun  1 02:05 config
+-rw-r--r-- 1 bandit29 root   23 Jun  1 02:05 HEAD
+-rw-r--r-- 1 bandit29 root  137 Jun  1 02:05 index
+drwxr-sr-x 3 bandit29 root 4.0K Jun  1 02:05 logs
+-rw-r--r-- 1 bandit29 root  245 Jun  1 02:05 packed-refs
+drwxr-sr-x 5 bandit29 root 4.0K Jun  1 02:05 refs
+drwxr-sr-x 4 bandit29 root 4.0K Jun  1 02:05 objects
+drwxr-sr-x 2 bandit29 root 4.0K Jun  1 02:05 branches
+-rw-r--r-- 1 bandit29 root   73 Jun  1 02:05 description
+drwxr-sr-x 2 bandit29 root 4.0K Jun  1 02:05 hooks
+drwxr-sr-x 2 bandit29 root 4.0K Jun  1 02:05 info
+bandit29@bandit:/tmp/superfiascaorm94733/repo/.git$ cd ..
+bandit29@bandit:/tmp/superfiascaorm94733/repo$ git branch -r 
+  origin/HEAD -> origin/master
+  origin/dev
+  origin/master
+  origin/sploits-dev
+bandit29@bandit:/tmp/superfiascaorm94733/repo$ git checkout dev
+Branch dev set up to track remote branch dev from origin.
+Switched to a new branch 'dev'
+bandit29@bandit:/tmp/superfiascaorm94733/repo$ ls
+code  README.md
+bandit29@bandit:/tmp/superfiascaorm94733/repo$ cat README.md
+# Bandit Notes
+Some notes for bandit30 of bandit.
+
+## credentials
+
+- username: bandit30
+- password: 5b90576bedb2cc04c86a9e924ce42faf
+
+bandit29@bandit:/tmp/superfiascaorm94733/repo$ exit
+
+30 - 31 
+
+ssh://bandit30-git@localhost/home/bandit30-git/repo
+
+5b90576bedb2cc04c86a9e924ce42faf
+bandit30@bandit:~$ ls
+bandit30@bandit:~$ mkdir /tmp/superfiasquinhorm94733
+bandit30@bandit:~$ cd /tmp/superfiasquinhorm94733
+bandit30@bandit:/tmp/superfiasquinhorm94733$ git clone ssh://bandit30-git@localhost/home/bandit30-git/repo
+Cloning into 'repo'...
+Could not create directory '/home/bandit30/.ssh'.
+The authenticity of host 'localhost (127.0.0.1)' can't be established.
+ECDSA key fingerprint is SHA256:98UL0ZWr85496EtCRkKlo20X3OPnyPSB5tB5RPbhczc.
+Are you sure you want to continue connecting (yes/no)? yes
+Failed to add the host to the list of known hosts (/home/bandit30/.ssh/known_hosts).
+This is a OverTheWire game server. More information on http://www.overthewire.org/wargames
+
+bandit30-git@localhost's password: 
+remote: Counting objects: 4, done.
+remote: Total 4 (delta 0), reused 0 (delta 0)
+Receiving objects: 100% (4/4), done.
+bandit30@bandit:/tmp/superfiasquinhorm94733$ ls -lathr * 
+total 16K
+drwxr-sr-x 3 bandit30 root 4.0K Jun  1 02:11 ..
+-rw-r--r-- 1 bandit30 root   30 Jun  1 02:11 README.md
+drwxr-sr-x 8 bandit30 root 4.0K Jun  1 02:11 .git
+drwxr-sr-x 3 bandit30 root 4.0K Jun  1 02:11 .
+bandit30@bandit:/tmp/superfiasquinhorm94733$ ls 
+repo
+bandit30@bandit:/tmp/superfiasquinhorm94733$ cd repo
+bandit30@bandit:/tmp/superfiasquinhorm94733/repo$ cat README.md
+just an epmty file... muahaha
+bandit30@bandit:/tmp/superfiasquinhorm94733/repo$ ls -latrh 
+total 16K
+drwxr-sr-x 3 bandit30 root 4.0K Jun  1 02:11 ..
+-rw-r--r-- 1 bandit30 root   30 Jun  1 02:11 README.md
+drwxr-sr-x 8 bandit30 root 4.0K Jun  1 02:11 .git
+drwxr-sr-x 3 bandit30 root 4.0K Jun  1 02:11 .
+bandit30@bandit:/tmp/superfiasquinhorm94733/repo$ git branch -r 
+  origin/HEAD -> origin/master
+  origin/master
+bandit30@bandit:/tmp/superfiasquinhorm94733/repo$ git show
+commit 3aefa229469b7ba1cc08203e5d8fa299354c496b
+Author: Ben Dover <noone@overthewire.org>
+Date:   Thu May 7 20:14:54 2020 +0200
+
+    initial commit of README.md
+
+diff --git a/README.md b/README.md
+new file mode 100644
+index 0000000..029ba42
+--- /dev/null
++++ b/README.md
+@@ -0,0 +1 @@
++just an epmty file... muahaha
+bandit30@bandit:/tmp/superfiasquinhorm94733/repo$ git logs
+git: 'logs' is not a git command. See 'git --help'.
+
+Did you mean this?
+        log
+bandit30@bandit:/tmp/superfiasquinhorm94733/repo$ git log
+commit 3aefa229469b7ba1cc08203e5d8fa299354c496b
+Author: Ben Dover <noone@overthewire.org>
+Date:   Thu May 7 20:14:54 2020 +0200
+
+    initial commit of README.md
+bandit30@bandit:/tmp/superfiasquinhorm94733/repo$ ls
+README.md
+bandit30@bandit:/tmp/superfiasquinhorm94733/repo$ git tag
+secret
+bandit30@bandit:/tmp/superfiasquinhorm94733/repo$ git show tags/secret
+47e603bb428404d265f59c42920d81e5
+
+
+
+31 - 32
+
+ssh://bandit31-git@localhost/home/bandit31-git/repo
+47e603bb428404d265f59c42920d81e5
+bandit31@bandit:/tmp/fiasquinhofiascaorm94733$ git clone ssh://bandit31-git@localhost/home/bandit31-git/repo
+Cloning into 'repo'...
+Could not create directory '/home/bandit31/.ssh'.
+The authenticity of host 'localhost (127.0.0.1)' can't be established.
+ECDSA key fingerprint is SHA256:98UL0ZWr85496EtCRkKlo20X3OPnyPSB5tB5RPbhczc.
+Are you sure you want to continue connecting (yes/no)? yes
+Failed to add the host to the list of known hosts (/home/bandit31/.ssh/known_hosts).
+This is a OverTheWire game server. More information on http://www.overthewire.org/wargames
+
+bandit31-git@localhost's password: 
+remote: Counting objects: 4, done.
+remote: Compressing objects: 100% (3/3), done.
+remote: Total 4 (delta 0), reused 0 (delta 0)
+Receiving objects: 100% (4/4), done.
+bandit31@bandit:/tmp/fiasquinhofiascaorm94733$ cd repo
+bandit31@bandit:/tmp/fiasquinhofiascaorm94733/repo$ git show
+commit 701b33b545902a670a46088731949ae040983d80
+Author: Ben Dover <noone@overthewire.org>
+Date:   Thu May 7 20:14:56 2020 +0200
+
+    initial commit
+
+diff --git a/.gitignore b/.gitignore
+new file mode 100644
+index 0000000..2211df6
+--- /dev/null
++++ b/.gitignore
+@@ -0,0 +1 @@
++*.txt
+diff --git a/README.md b/README.md
+new file mode 100644
+index 0000000..0edecc0
+--- /dev/null
++++ b/README.md
+@@ -0,0 +1,7 @@
++This time your task is to push a file to the remote repository.
++
++Details:
++    File name: key.txt
++    Content: 'May I come in?'
++    Branch: master
++
+bandit31@bandit:/tmp/fiasquinhofiascaorm94733/repo$ git log 
+commit 701b33b545902a670a46088731949ae040983d80
+Author: Ben Dover <noone@overthewire.org>
+Date:   Thu May 7 20:14:56 2020 +0200
+
+    initial commit
+bandit31@bandit:/tmp/fiasquinhofiascaorm94733/repo$ ls
+README.md
+bandit31@bandit:/tmp/fiasquinhofiascaorm94733/repo$ cat README.md
+This time your task is to push a file to the remote repository.
+
+Details:
+    File name: key.txt
+    Content: 'May I come in?'
+    Branch: master
+
+bandit31@bandit:/tmp/fiasquinhofiascaorm94733/repo$ vim key.txt 
+bandit31@bandit:/tmp/fiasquinhofiascaorm94733/repo$ git add -f key.txt && git commit -m "May I come in?"
+[master ff2e069] May I come in?
+ 1 file changed, 1 insertion(+)
+ create mode 100644 key.txt
+bandit31@bandit:/tmp/fiasquinhofiascaorm94733/repo$ cat key.txt
+May I come in?
+bandit31@bandit:/tmp/fiasquinhofiascaorm94733/repo$ ls
+key.txt  README.md
+bandit31@bandit:/tmp/fiasquinhofiascaorm94733/repo$ cat README.md
+This time your task is to push a file to the remote repository.
+
+Details:
+    File name: key.txt
+    Content: 'May I come in?'
+    Branch: master
+
+bandit31@bandit:/tmp/fiasquinhofiascaorm94733/repo$ git push 
+Could not create directory '/home/bandit31/.ssh'.
+The authenticity of host 'localhost (127.0.0.1)' can't be established.
+ECDSA key fingerprint is SHA256:98UL0ZWr85496EtCRkKlo20X3OPnyPSB5tB5RPbhczc.
+Are you sure you want to continue connecting (yes/no)? yes
+Failed to add the host to the list of known hosts (/home/bandit31/.ssh/known_hosts).
+This is a OverTheWire game server. More information on http://www.overthewire.org/wargames
+
+bandit31-git@localhost's password: 
+Counting objects: 3, done.
+Delta compression using up to 2 threads.
+Compressing objects: 100% (2/2), done.
+Writing objects: 100% (3/3), 327 bytes | 0 bytes/s, done.
+Total 3 (delta 0), reused 0 (delta 0)
+remote: ### Attempting to validate files... ####
+remote: 
+remote: .oOo.oOo.oOo.oOo.oOo.oOo.oOo.oOo.oOo.oOo.
+remote: 
+remote: Well done! Here is the password for the next level:
+remote: 56a9bf19c63d650ce78e6ec0354ee45e
+remote: 
+remote: .oOo.oOo.oOo.oOo.oOo.oOo.oOo.oOo.oOo.oOo.
+remote: 
+To ssh://localhost/home/bandit31-git/repo
+ ! [remote rejected] master -> master (pre-receive hook declined)
+error: failed to push some refs to 'ssh://bandit31-git@localhost/home/bandit31-git/repo'
+
+32 - 33 
+
+$0
+c9c3199ddf4121b10cf581a98d51caee
